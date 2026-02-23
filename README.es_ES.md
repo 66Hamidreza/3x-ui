@@ -1,4 +1,4 @@
-[English](/README.md) | [فارسی](/README.fa_IR.md) | [العربية](/README.ar_EG.md) |  [中文](/README.zh_CN.md) | [Español](/README.es_ES.md) | [Русский](/README.ru_RU.md)
+[English](/README.md) | [ÙØ§Ø±Ø³ÛŒ](/README.fa_IR.md) | [Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©](/README.ar_EG.md) |  [ä¸­æ–‡](/README.zh_CN.md) | [EspaÃ±ol](/README.es_ES.md) | [Ð ÑƒÑÑÐºÐ¸Ð¹](/README.ru_RU.md)
 
 <p align="center">
   <picture>
@@ -15,20 +15,20 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/mhsanaei/3x-ui/v2.svg)](https://pkg.go.dev/github.com/mhsanaei/3x-ui/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mhsanaei/3x-ui/v2)](https://goreportcard.com/report/github.com/mhsanaei/3x-ui/v2)
 
-**3X-UI** — panel de control avanzado basado en web de código abierto diseñado para gestionar el servidor Xray-core. Ofrece una interfaz fácil de usar para configurar y monitorear varios protocolos VPN y proxy.
+**3X-UI** â€” panel de control avanzado basado en web de cÃ³digo abierto diseÃ±ado para gestionar el servidor Xray-core. Ofrece una interfaz fÃ¡cil de usar para configurar y monitorear varios protocolos VPN y proxy.
 
 > [!IMPORTANT]
-> Este proyecto es solo para uso personal y comunicación, por favor no lo use para fines ilegales, por favor no lo use en un entorno de producción.
+> Este proyecto es solo para uso personal y comunicaciÃ³n, por favor no lo use para fines ilegales, por favor no lo use en un entorno de producciÃ³n.
 
-Como una versión mejorada del proyecto X-UI original, 3X-UI proporciona mayor estabilidad, soporte más amplio de protocolos y características adicionales.
+Como una versiÃ³n mejorada del proyecto X-UI original, 3X-UI proporciona mayor estabilidad, soporte mÃ¡s amplio de protocolos y caracterÃ­sticas adicionales.
 
-## Inicio Rápido
+## Inicio RÃ¡pido
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/66Hamidreza/3x-ui/main/install.sh)
 ```
 
-Para documentación completa, visita la [Wiki del proyecto](https://github.com/MHSanaei/3x-ui/wiki).
+Para documentaciÃ³n completa, visita la [Wiki del proyecto](https://github.com/MHSanaei/3x-ui/wiki).
 
 ## Un Agradecimiento Especial a
 
@@ -36,12 +36,12 @@ Para documentación completa, visita la [Wiki del proyecto](https://github.com/M
 
 ## Reconocimientos
 
-- [Iran v2ray rules](https://github.com/chocolate4u/Iran-v2ray-rules) (Licencia: **GPL-3.0**): _Reglas de enrutamiento mejoradas para v2ray/xray y v2ray/xray-clients con dominios iraníes incorporados y un enfoque en seguridad y bloqueo de anuncios._
-- [Russia v2ray rules](https://github.com/runetfreedom/russia-v2ray-rules-dat) (Licencia: **GPL-3.0**): _Este repositorio contiene reglas de enrutamiento V2Ray actualizadas automáticamente basadas en datos de dominios y direcciones bloqueadas en Rusia._
+- [Iran v2ray rules](https://github.com/chocolate4u/Iran-v2ray-rules) (Licencia: **GPL-3.0**): _Reglas de enrutamiento mejoradas para v2ray/xray y v2ray/xray-clients con dominios iranÃ­es incorporados y un enfoque en seguridad y bloqueo de anuncios._
+- [Russia v2ray rules](https://github.com/runetfreedom/russia-v2ray-rules-dat) (Licencia: **GPL-3.0**): _Este repositorio contiene reglas de enrutamiento V2Ray actualizadas automÃ¡ticamente basadas en datos de dominios y direcciones bloqueadas en Rusia._
 
 ## Apoyar el Proyecto
 
-**Si este proyecto te es útil, puedes darle una**:star2:
+**Si este proyecto te es Ãºtil, puedes darle una**:star2:
 
 <a href="https://www.buymeacoffee.com/MHSanaei" target="_blank">
 <img src="./media/default-yellow.png" alt="Buy Me A Coffee" style="height: 70px !important;width: 277px !important;" >

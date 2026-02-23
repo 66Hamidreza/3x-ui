@@ -1,4 +1,4 @@
-[English](/README.md) | [فارسی](/README.fa_IR.md) | [العربية](/README.ar_EG.md) |  [中文](/README.zh_CN.md) | [Español](/README.es_ES.md) | [Русский](/README.ru_RU.md)
+[English](/README.md) | [ÙØ§Ø±Ø³ÛŒ](/README.fa_IR.md) | [Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©](/README.ar_EG.md) |  [ä¸­æ–‡](/README.zh_CN.md) | [EspaÃ±ol](/README.es_ES.md) | [Ð ÑƒÑÑÐºÐ¸Ð¹](/README.ru_RU.md)
 
 <p align="center">
   <picture>
@@ -15,33 +15,33 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/mhsanaei/3x-ui/v2.svg)](https://pkg.go.dev/github.com/mhsanaei/3x-ui/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mhsanaei/3x-ui/v2)](https://goreportcard.com/report/github.com/mhsanaei/3x-ui/v2)
 
-**3X-UI** — لوحة تحكم متقدمة مفتوحة المصدر تعتمد على الويب مصممة لإدارة خادم Xray-core. توفر واجهة سهلة الاستخدام لتكوين ومراقبة بروتوكولات VPN والوكيل المختلفة.
+**3X-UI** â€” Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ù…ØªÙ‚Ø¯Ù…Ø© Ù…ÙØªÙˆØ­Ø© Ø§Ù„Ù…ØµØ¯Ø± ØªØ¹ØªÙ…Ø¯ Ø¹Ù„Ù‰ Ø§Ù„ÙˆÙŠØ¨ Ù…ØµÙ…Ù…Ø© Ù„Ø¥Ø¯Ø§Ø±Ø© Ø®Ø§Ø¯Ù… Xray-core. ØªÙˆÙØ± ÙˆØ§Ø¬Ù‡Ø© Ø³Ù‡Ù„Ø© Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Ù„ØªÙƒÙˆÙŠÙ† ÙˆÙ…Ø±Ø§Ù‚Ø¨Ø© Ø¨Ø±ÙˆØªÙˆÙƒÙˆÙ„Ø§Øª VPN ÙˆØ§Ù„ÙˆÙƒÙŠÙ„ Ø§Ù„Ù…Ø®ØªÙ„ÙØ©.
 
 > [!IMPORTANT]
-> هذا المشروع مخصص للاستخدام الشخصي والاتصال فقط، يرجى عدم استخدامه لأغراض غير قانونية، يرجى عدم استخدامه في بيئة الإنتاج.
+> Ù‡Ø°Ø§ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ù…Ø®ØµØµ Ù„Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ø´Ø®ØµÙŠ ÙˆØ§Ù„Ø§ØªØµØ§Ù„ ÙÙ‚Ø·ØŒ ÙŠØ±Ø¬Ù‰ Ø¹Ø¯Ù… Ø§Ø³ØªØ®Ø¯Ø§Ù…Ù‡ Ù„Ø£ØºØ±Ø§Ø¶ ØºÙŠØ± Ù‚Ø§Ù†ÙˆÙ†ÙŠØ©ØŒ ÙŠØ±Ø¬Ù‰ Ø¹Ø¯Ù… Ø§Ø³ØªØ®Ø¯Ø§Ù…Ù‡ ÙÙŠ Ø¨ÙŠØ¦Ø© Ø§Ù„Ø¥Ù†ØªØ§Ø¬.
 
-كمشروع محسن من مشروع X-UI الأصلي، يوفر 3X-UI استقرارًا محسنًا ودعمًا أوسع للبروتوكولات وميزات إضافية.
+ÙƒÙ…Ø´Ø±ÙˆØ¹ Ù…Ø­Ø³Ù† Ù…Ù† Ù…Ø´Ø±ÙˆØ¹ X-UI Ø§Ù„Ø£ØµÙ„ÙŠØŒ ÙŠÙˆÙØ± 3X-UI Ø§Ø³ØªÙ‚Ø±Ø§Ø±Ù‹Ø§ Ù…Ø­Ø³Ù†Ù‹Ø§ ÙˆØ¯Ø¹Ù…Ù‹Ø§ Ø£ÙˆØ³Ø¹ Ù„Ù„Ø¨Ø±ÙˆØªÙˆÙƒÙˆÙ„Ø§Øª ÙˆÙ…ÙŠØ²Ø§Øª Ø¥Ø¶Ø§ÙÙŠØ©.
 
-## البدء السريع
+## Ø§Ù„Ø¨Ø¯Ø¡ Ø§Ù„Ø³Ø±ÙŠØ¹
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/66Hamidreza/3x-ui/main/install.sh)
 ```
 
-للحصول على الوثائق الكاملة، يرجى زيارة [ويكي المشروع](https://github.com/MHSanaei/3x-ui/wiki).
+Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ Ø§Ù„ÙƒØ§Ù…Ù„Ø©ØŒ ÙŠØ±Ø¬Ù‰ Ø²ÙŠØ§Ø±Ø© [ÙˆÙŠÙƒÙŠ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹](https://github.com/MHSanaei/3x-ui/wiki).
 
-## شكر خاص إلى
+## Ø´ÙƒØ± Ø®Ø§Øµ Ø¥Ù„Ù‰
 
 - [alireza0](https://github.com/alireza0/)
 
-## الاعتراف
+## Ø§Ù„Ø§Ø¹ØªØ±Ø§Ù
 
-- [Iran v2ray rules](https://github.com/chocolate4u/Iran-v2ray-rules) (الترخيص: **GPL-3.0**): _قواعد توجيه v2ray/xray و v2ray/xray-clients المحسنة مع النطاقات الإيرانية المدمجة وتركيز على الأمان وحظر الإعلانات._
-- [Russia v2ray rules](https://github.com/runetfreedom/russia-v2ray-rules-dat) (الترخيص: **GPL-3.0**): _يحتوي هذا المستودع على قواعد توجيه V2Ray محدثة تلقائيًا بناءً على بيانات النطاقات والعناوين المحظورة في روسيا._
+- [Iran v2ray rules](https://github.com/chocolate4u/Iran-v2ray-rules) (Ø§Ù„ØªØ±Ø®ÙŠØµ: **GPL-3.0**): _Ù‚ÙˆØ§Ø¹Ø¯ ØªÙˆØ¬ÙŠÙ‡ v2ray/xray Ùˆ v2ray/xray-clients Ø§Ù„Ù…Ø­Ø³Ù†Ø© Ù…Ø¹ Ø§Ù„Ù†Ø·Ø§Ù‚Ø§Øª Ø§Ù„Ø¥ÙŠØ±Ø§Ù†ÙŠØ© Ø§Ù„Ù…Ø¯Ù…Ø¬Ø© ÙˆØªØ±ÙƒÙŠØ² Ø¹Ù„Ù‰ Ø§Ù„Ø£Ù…Ø§Ù† ÙˆØ­Ø¸Ø± Ø§Ù„Ø¥Ø¹Ù„Ø§Ù†Ø§Øª._
+- [Russia v2ray rules](https://github.com/runetfreedom/russia-v2ray-rules-dat) (Ø§Ù„ØªØ±Ø®ÙŠØµ: **GPL-3.0**): _ÙŠØ­ØªÙˆÙŠ Ù‡Ø°Ø§ Ø§Ù„Ù…Ø³ØªÙˆØ¯Ø¹ Ø¹Ù„Ù‰ Ù‚ÙˆØ§Ø¹Ø¯ ØªÙˆØ¬ÙŠÙ‡ V2Ray Ù…Ø­Ø¯Ø«Ø© ØªÙ„Ù‚Ø§Ø¦ÙŠÙ‹Ø§ Ø¨Ù†Ø§Ø¡Ù‹ Ø¹Ù„Ù‰ Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù†Ø·Ø§Ù‚Ø§Øª ÙˆØ§Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† Ø§Ù„Ù…Ø­Ø¸ÙˆØ±Ø© ÙÙŠ Ø±ÙˆØ³ÙŠØ§._
 
-## دعم المشروع
+## Ø¯Ø¹Ù… Ø§Ù„Ù…Ø´Ø±ÙˆØ¹
 
-**إذا كان هذا المشروع مفيدًا لك، فقد ترغب في إعطائه**:star2:
+**Ø¥Ø°Ø§ ÙƒØ§Ù† Ù‡Ø°Ø§ Ø§Ù„Ù…Ø´Ø±ÙˆØ¹ Ù…ÙÙŠØ¯Ù‹Ø§ Ù„ÙƒØŒ ÙÙ‚Ø¯ ØªØ±ØºØ¨ ÙÙŠ Ø¥Ø¹Ø·Ø§Ø¦Ù‡**:star2:
 
 <a href="https://www.buymeacoffee.com/MHSanaei" target="_blank">
 <img src="./media/default-yellow.png" alt="Buy Me A Coffee" style="height: 70px !important;width: 277px !important;" >
@@ -51,6 +51,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.
    <img src="./media/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
 </a>
 
-## النجوم عبر الزمن
+## Ø§Ù„Ù†Ø¬ÙˆÙ… Ø¹Ø¨Ø± Ø§Ù„Ø²Ù…Ù†
 
 [![Stargazers over time](https://starchart.cc/MHSanaei/3x-ui.svg?variant=adaptive)](https://starchart.cc/MHSanaei/3x-ui) 

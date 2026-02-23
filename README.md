@@ -1,4 +1,4 @@
-[English](/README.md) | [فارسی](/README.fa_IR.md) | [العربية](/README.ar_EG.md) |  [中文](/README.zh_CN.md) | [Español](/README.es_ES.md) | [Русский](/README.ru_RU.md)
+[English](/README.md) | [ÙØ§Ø±Ø³ÛŒ](/README.fa_IR.md) | [Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©](/README.ar_EG.md) |  [ä¸­æ–‡](/README.zh_CN.md) | [EspaÃ±ol](/README.es_ES.md) | [Ð ÑƒÑÑÐºÐ¸Ð¹](/README.ru_RU.md)
 
 <p align="center">
   <picture>
@@ -15,7 +15,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/mhsanaei/3x-ui/v2.svg)](https://pkg.go.dev/github.com/mhsanaei/3x-ui/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mhsanaei/3x-ui/v2)](https://goreportcard.com/report/github.com/mhsanaei/3x-ui/v2)
 
-**3X-UI** — advanced, open-source web-based control panel designed for managing Xray-core server. It offers a user-friendly interface for configuring and monitoring various VPN and proxy protocols.
+**3X-UI** â€” advanced, open-source web-based control panel designed for managing Xray-core server. It offers a user-friendly interface for configuring and monitoring various VPN and proxy protocols.
 
 > [!IMPORTANT]
 > This project is only for personal usage, please do not use it for illegal purposes, and please do not use it in a production environment.
@@ -25,7 +25,7 @@ As an enhanced fork of the original X-UI project, 3X-UI provides improved stabil
 ## Quick Start
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/66Hamidreza/3x-ui/main/install.sh)
 ```
 
 For full documentation, please visit the [project Wiki](https://github.com/MHSanaei/3x-ui/wiki).
