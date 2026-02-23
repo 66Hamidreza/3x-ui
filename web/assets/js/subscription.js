@@ -91,11 +91,9 @@
       themeSwitcher,
       app: data,
       links: rawLinks,
-      lang: '',
       viewportWidth: (typeof window !== 'undefined' ? window.innerWidth : 1024),
     },
     async mounted() {
-      this.lang = LanguageManager.getLanguage();
       const tpl = document.getElementById('subscription-data');
       const sj = tpl ? tpl.getAttribute('data-subjson-url') : '';
       if (sj) this.app.subJsonUrl = sj;
@@ -115,6 +113,19 @@
     computed: {
       isMobile() {
         return this.viewportWidth < 576;
+      },
+      usedBytes() {
+        return (this.app.uploadByte || 0) + (this.app.downloadByte || 0);
+      },
+      usagePercent() {
+        if (!this.app.totalByte || this.app.totalByte <= 0) return 0;
+        const pct = (this.usedBytes / this.app.totalByte) * 100;
+        return Math.max(0, Math.min(100, Math.round(pct * 10) / 10));
+      },
+      remainingPercent() {
+        if (!this.app.totalByte || this.app.totalByte <= 0) return 0;
+        const pct = 100 - this.usagePercent;
+        return Math.max(0, Math.min(100, Math.round(pct * 10) / 10));
       },
       isUnlimited() {
         return !this.app.totalByte;
@@ -158,3 +169,4 @@
     },
   });
 })();
+

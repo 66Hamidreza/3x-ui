@@ -1,4 +1,4 @@
-{{ template "page/head_start" .}}
+﻿{{ template "page/head_start" .}}
 <script src="{{ .base_path }}assets/moment/moment.min.js"></script>
 <script src="{{ .base_path }}assets/moment/moment-jalali.min.js?{{ .cur_ver }}"></script>
 <script src="{{ .base_path }}assets/vue/vue.min.js?{{ .cur_ver }}"></script>
@@ -6,242 +6,481 @@
 <script src="{{ .base_path }}assets/js/util/index.js?{{ .cur_ver }}"></script>
 <script src="{{ .base_path }}assets/qrcode/qrious2.min.js?{{ .cur_ver }}"></script>
 <style>
-    .subscription-page .subscription-link-box {
-        cursor: pointer;
-        border-radius: 12px;
-        padding: 25px 20px 15px 20px;
-        margin-top: -12px;
-        word-break: break-all;
+    :root {
+        --bg-grad: linear-gradient(160deg, #220d4f 0%, #3a1869 45%, #5a1c68 100%);
+        --card-dark: rgba(34, 30, 68, 0.82);
+        --card-dark-border: rgba(117, 126, 255, 0.25);
+        --card-light: rgba(255, 255, 255, 0.9);
+        --card-light-border: rgba(28, 39, 90, 0.12);
+        --accent-cyan: #2ec5ff;
+        --accent-green: #00d98b;
+        --accent-blue: #2a7bff;
+        --text-dark: #f4f6ff;
+        --text-light: #1e2340;
+    }
+
+    .subscription-page {
+        min-height: 100vh;
+        direction: rtl;
+        unicode-bidi: plaintext;
+    }
+
+    .subscription-page * {
+        box-sizing: border-box;
+    }
+
+    .subscription-page .sub-main {
+        min-height: 100vh;
+        background: var(--bg-grad);
+        padding: 18px 12px 28px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .subscription-page.light .sub-main {
+        background: linear-gradient(160deg, #dce4ff 0%, #e8def9 45%, #f7d9eb 100%);
+    }
+
+    .subscription-page .sub-main::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 18% 20%, rgba(46, 197, 255, 0.22), transparent 45%),
+            radial-gradient(circle at 85% 82%, rgba(40, 255, 167, 0.16), transparent 38%);
+        pointer-events: none;
+    }
+
+    .sub-shell {
+        position: relative;
+        max-width: 420px;
+        margin: 0 auto;
+        z-index: 1;
+    }
+
+    .sub-toggle {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 9;
+        background: rgba(18, 24, 44, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 6px;
+        backdrop-filter: blur(6px);
+    }
+
+    .subscription-page.light .sub-toggle {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(17, 28, 68, 0.15);
+    }
+
+    .sub-card {
+        border-radius: 14px;
+        border: 1px solid var(--card-dark-border);
+        background: var(--card-dark);
+        color: var(--text-dark);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    .subscription-page.light .sub-card {
+        border-color: var(--card-light-border);
+        background: var(--card-light);
+        color: var(--text-light);
+    }
+
+    .sub-head {
+        text-align: center;
+        padding: 14px 12px;
+        background: linear-gradient(135deg, rgba(39, 93, 255, 0.4), rgba(156, 60, 221, 0.45));
+    }
+
+    .subscription-page.light .sub-head {
+        background: linear-gradient(135deg, rgba(39, 93, 255, 0.12), rgba(156, 60, 221, 0.12));
+    }
+
+    .sub-head-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .sub-head-note {
+        font-size: 12px;
+        color: #ffce7b;
+    }
+
+    .sub-center {
+        text-align: center;
+    }
+
+    .sub-title {
+        font-size: 18px;
+        font-weight: 800;
+        margin-top: 4px;
+    }
+
+    .sub-id {
+        display: inline-block;
+        margin-top: 6px;
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .subscription-page.light .sub-id {
+        background: rgba(18, 28, 72, 0.1);
+    }
+
+    .sub-status {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .sub-status.active {
+        color: #00e48f;
+    }
+
+    .sub-status.inactive {
+        color: #ff7b7b;
+    }
+
+    .sub-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .sub-stat {
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px 6px;
+        background: rgba(17, 20, 47, 0.44);
+        border: 1px solid rgba(91, 104, 255, 0.22);
+        min-height: 72px;
+    }
+
+    .subscription-page.light .sub-stat {
+        background: rgba(247, 249, 255, 0.8);
+        border-color: rgba(22, 36, 94, 0.12);
+    }
+
+    .sub-stat-k {
+        font-size: 11px;
+        opacity: 0.82;
+        margin-bottom: 5px;
+    }
+
+    .sub-stat-v {
+        font-size: 12px;
+        font-weight: 700;
+        direction: ltr;
+        unicode-bidi: embed;
+    }
+
+    .sub-progress-wrap {
+        margin-top: 14px;
+        border-radius: 10px;
+        padding: 10px;
+        background: rgba(17, 20, 47, 0.44);
+        border: 1px solid rgba(91, 104, 255, 0.22);
+    }
+
+    .subscription-page.light .sub-progress-wrap {
+        background: rgba(247, 249, 255, 0.85);
+        border-color: rgba(22, 36, 94, 0.12);
+    }
+
+    .sub-progress-title {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .sub-progress {
+        height: 8px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .subscription-page.light .sub-progress {
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    .sub-progress-used {
+        height: 100%;
+        background: linear-gradient(90deg, #f6458f, #ff7567);
+        transition: width 0.35s ease;
+    }
+
+    .sub-progress-meta {
+        margin-top: 6px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+    }
+
+    .sub-links-box {
+        border: 1px solid #00ff88;
+        box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.4), 0 10px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .sub-links-title {
         font-size: 13px;
-        line-height: 1.5;
-        text-align: left;
-        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-        transition: all 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-weight: 800;
+        margin-bottom: 8px;
+        text-align: center;
     }
 
-    .dark.subscription-page .subscription-link-box {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    .sub-suburl-btn {
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin-bottom: 8px;
+        font-size: 12px;
+        font-weight: 700;
         color: #fff;
+        cursor: pointer;
+        background: linear-gradient(90deg, #16a34a, #22c55e);
     }
 
-    .dark.subscription-page .subscription-link-box:hover {
-        background: rgba(0, 0, 0, 0.3);
-        border-color: rgba(255, 255, 255, 0.2);
+    .sub-suburl-btn.secondary {
+        background: linear-gradient(90deg, #1d4ed8, #2563eb);
     }
 
-    .light.subscription-page .subscription-link-box {
-        background: rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        color: rgba(0, 0, 0, 0.85);
+    .sub-link-row {
+        margin-top: 7px;
+        border-radius: 8px;
+        border: 1px solid rgba(74, 89, 255, 0.3);
+        background: rgba(11, 16, 40, 0.65);
+        padding: 8px;
+        cursor: pointer;
     }
 
-    .light.subscription-page .subscription-link-box:hover {
-        background: rgba(0, 0, 0, 0.05);
-        border-color: rgba(0, 0, 0, 0.14);
+    .subscription-page.light .sub-link-row {
+        border-color: rgba(22, 36, 94, 0.14);
+        background: rgba(242, 246, 255, 0.9);
+    }
+
+    .sub-link-name {
+        font-size: 11px;
+        margin-bottom: 4px;
+        font-weight: 700;
+        opacity: 0.95;
+    }
+
+    .sub-link-val {
+        font-size: 11px;
+        direction: ltr;
+        text-align: left;
+        unicode-bidi: embed;
+        word-break: break-all;
+        font-family: Consolas, "Courier New", monospace;
+        opacity: 0.92;
+    }
+
+    .sub-app-title {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .sub-app-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .sub-app-btn {
+        width: 100%;
+        border-radius: 9px;
+        height: 40px;
+        font-weight: 700;
+    }
+
+    .sub-app-ios .ant-btn {
+        background: #d9e1ea;
+        color: #111827;
+        border-color: transparent;
+    }
+
+    .sub-app-android .ant-btn {
+        background: #32c971;
+        color: #fff;
+        border-color: transparent;
+    }
+
+    .sub-foot {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .sub-qr-block {
+        margin-top: 12px;
+        text-align: center;
+    }
+
+    .sub-qr-label {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .sub-qr-frame {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+        border-radius: 12px;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+    }
+
+    .sub-qr-frame canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sub-json-qr {
+        margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+        .sub-stats {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
     }
 </style>
 {{ template "page/head_end" .}}
 
 {{ template "page/body_start" .}}
 <a-layout id="app" v-cloak :class="themeSwitcher.currentTheme + ' subscription-page'">
-    <a-layout-content class="p-2">
-        <a-row type="flex" justify="center" class="mt-2">
-            <a-col :xs="24" :sm="22" :md="18" :lg="14" :xl="12">
-                <a-card hoverable class="subscription-card">
-                    <template #title>
-                        <a-space>
-                            <span>{{ i18n "subscription.title" }}</span>
-                            <a-tag>{{ .sId }}</a-tag>
-                        </a-space>
-                    </template>
-                    <template #extra>
-                        <a-popover :overlay-class-name="themeSwitcher.currentTheme" title='{{ i18n "menu.settings" }}'
-                            placement="bottomRight" trigger="click">
-                            <template #content>
-                                <a-space direction="vertical" :size="10">
-                                    <a-theme-switch-login></a-theme-switch-login>
-                                    <span>{{ i18n "pages.settings.language"
-                                        }}</span>
-                                    <a-select ref="selectLang" class="w-100" v-model="lang"
-                                        @change="LanguageManager.setLanguage(lang)"
-                                        :dropdown-class-name="themeSwitcher.currentTheme">
-                                        <a-select-option :value="l.value" label="English"
-                                            v-for="l in LanguageManager.supportedLanguages" :key="l.value">
-                                            <span role="img" :aria-label="l.name" v-text="l.icon"></span>
-                                            &nbsp;&nbsp;<span v-text="l.name"></span>
-                                        </a-select-option>
-                                    </a-select>
-                                </a-space>
-                            </template>
-                            <a-button shape="circle" icon="setting"></a-button>
-                        </a-popover>
-                    </template>
+    <a-layout-content class="sub-main">
+        <div class="sub-toggle">
+            <a-theme-switch-login></a-theme-switch-login>
+        </div>
 
-                    <a-form layout="vertical">
-                        <a-form-item>
-                            <a-space direction="vertical" align="center">
-                                <a-row type="flex" :gutter="[8,8]" justify="center" style="width:100%">
-                                    <a-col :xs="24" :sm="app.subJsonUrl ? 12 : 24" style="text-align:center;">
-                                        <tr-qr-box class="qr-box">
-                                            <a-tag color="purple" class="qr-tag">
-                                                <span>{{ i18n
-                                                    "pages.settings.subSettings"}}</span>
-                                            </a-tag>
-                                            <tr-qr-bg class="qr-bg-sub">
-                                                <tr-qr-bg-inner class="qr-bg-sub-inner">
-                                                    <canvas id="qrcode" class="qr-cv" title='{{ i18n "copy" }}'
-                                                        @click="copy(app.subUrl)"></canvas>
-                                                </tr-qr-bg-inner>
-                                            </tr-qr-bg>
-                                        </tr-qr-box>
-                                    </a-col>
-                                    <a-col v-if="app.subJsonUrl" :xs="24" :sm="12" style="text-align:center;">
-                                        <tr-qr-box class="qr-box">
-                                            <a-tag color="purple" class="qr-tag">
-                                                <span>{{ i18n
-                                                    "pages.settings.subSettings"}}
-                                                    Json</span>
-                                            </a-tag>
-                                            <tr-qr-bg class="qr-bg-sub">
-                                                <tr-qr-bg-inner class="qr-bg-sub-inner">
-                                                    <canvas id="qrcode-subjson" class="qr-cv" title='{{ i18n "copy" }}'
-                                                        @click="copy(app.subJsonUrl)"></canvas>
-                                                </tr-qr-bg-inner>
-                                            </tr-qr-bg>
-                                        </tr-qr-box>
-                                    </a-col>
-                                </a-row>
-                            </a-space>
-                        </a-form-item>
+        <div class="sub-shell">
+            <div class="sub-card sub-head">
+                <div class="sub-head-title">این لینک اختصاصی و هوشمند شماست</div>
+                <div class="sub-head-note">برای دریافت تنظیمات، لینک یا QR را کپی کنید</div>
+            </div>
 
-                        <a-form-item>
-                            <a-descriptions bordered :column="1" size="small">
-                                <a-descriptions-item label='{{ i18n "subscription.subId" }}'>[[
-                                    app.sId
-                                    ]]</a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "subscription.status" }}'>
-                                    <template v-if="isUnlimited">
-                                        <a-tag color="purple">{{ i18n
-                                            "subscription.unlimited" }}</a-tag>
-                                    </template>
-                                    <template v-else>
-                                        <a-tag :color="isActive ? 'green' : 'red'">[[
-                                            isActive ? '{{ i18n
-                                            "subscription.active" }}' : '{{ i18n
-                                            "subscription.inactive" }}'
-                                            ]]</a-tag>
-                                    </template>
-                                </a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "subscription.downloaded" }}'>[[
-                                    app.download
-                                    ]]</a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "subscription.uploaded" }}'>[[
-                                    app.upload
-                                    ]]</a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "usage" }}'>[[ app.used
-                                    ]]</a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "subscription.totalQuota" }}'>[[
-                                    app.total
-                                    ]]</a-descriptions-item>
-                                <a-descriptions-item v-if="app.totalByte > 0" label='{{ i18n "remained" }}'>[[
-                                    app.remained ]]</a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "lastOnline" }}'>
-                                    <template v-if="app.lastOnlineMs > 0">
-                                        [[ IntlUtil.formatDate(app.lastOnlineMs) ]]
-                                    </template>
-                                    <template v-else>
-                                        <span>-</span>
-                                    </template>
-                                </a-descriptions-item>
-                                <a-descriptions-item label='{{ i18n "subscription.expiry" }}'>
-                                    <template v-if="app.expireMs === 0">
-                                        {{ i18n "subscription.noExpiry" }}
-                                    </template>
-                                    <template v-else>
-                                        [[ IntlUtil.formatDate(app.expireMs) ]]
-                                    </template>
-                                </a-descriptions-item>
-                            </a-descriptions>
-                        </a-form-item>
-                    </a-form>
+            <div class="sub-card sub-center">
+                <div style="font-size:28px; line-height:1;">🧭</div>
+                <div class="sub-title">اطلاعات اشتراک</div>
+                <span class="sub-id">[[ app.sId ]]</span>
+                <div class="sub-status" :class="isActive || isUnlimited ? 'active' : 'inactive'">
+                    [[ isUnlimited ? 'نامحدود' : (isActive ? 'فعال' : 'غیرفعال') ]]
+                </div>
 
-                    <br />
-                    <div v-for="(link, idx) in links" :key="link"
-                        style="position: relative; margin-bottom: 20px; text-align: center;">
-                        <div class="qr-box" style="display: inline-block; width: 100%; max-width: 100%;">
-                            <a-tag color="purple"
-                                style="margin-bottom: -10px; position: relative; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                                <span>[[ linkName(link, idx) ]]</span>
-                            </a-tag>
-                            <div @click="copy(link)" class="subscription-link-box">
-                                [[ link ]]
-                            </div>
+                <div class="sub-stats">
+                    <div class="sub-stat">
+                        <div class="sub-stat-k">دانلود</div>
+                        <div class="sub-stat-v">[[ app.download ]]</div>
+                    </div>
+                    <div class="sub-stat">
+                        <div class="sub-stat-k">آپلود</div>
+                        <div class="sub-stat-v">[[ app.upload ]]</div>
+                    </div>
+                    <div class="sub-stat">
+                        <div class="sub-stat-k">انقضا</div>
+                        <div class="sub-stat-v">[[ app.expireMs ? IntlUtil.formatDate(app.expireMs) : 'بدون انقضا' ]]</div>
+                    </div>
+                    <div class="sub-stat">
+                        <div class="sub-stat-k">باقی‌مانده</div>
+                        <div class="sub-stat-v">[[ app.totalByte > 0 ? app.remained : 'نامحدود' ]]</div>
+                    </div>
+                </div>
+
+                <div class="sub-progress-wrap" v-if="app.totalByte > 0">
+                    <div class="sub-progress-title">مصرف کل اشتراک</div>
+                    <div class="sub-progress">
+                        <div class="sub-progress-used" :style="{ width: usagePercent + '%' }"></div>
+                    </div>
+                    <div class="sub-progress-meta">
+                        <span>مصرف‌شده: [[ usagePercent ]]%</span>
+                        <span>باقی‌مانده: [[ remainingPercent ]]%</span>
+                    </div>
+                </div>
+
+                <div class="sub-qr-block">
+                    <div class="sub-qr-label">کد QR اشتراک</div>
+                    <div class="sub-qr-frame" @click="copy(app.subUrl)">
+                        <canvas id="qrcode" title="کپی"></canvas>
+                    </div>
+                    <div class="sub-json-qr" v-if="app.subJsonUrl">
+                        <div class="sub-qr-label">کد QR اشتراک JSON</div>
+                        <div class="sub-qr-frame" @click="copy(app.subJsonUrl)">
+                            <canvas id="qrcode-subjson" title="کپی"></canvas>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    </div>
-                    <br />
+            <div class="sub-card sub-links-box">
+                <div class="sub-links-title">لینک‌های من</div>
+                <button class="sub-suburl-btn" @click="copy(app.subUrl)">کپی لینک اشتراک</button>
+                <button v-if="app.subJsonUrl" class="sub-suburl-btn secondary" @click="copy(app.subJsonUrl)">کپی لینک JSON</button>
 
-                    <a-form layout="vertical">
-                        <a-form-item>
-                            <a-row type="flex" justify="center" :gutter="[8,8]" style="width:100%">
-                                <a-col :xs="24" :sm="12" style="text-align:center;">
-                                    <!-- Android dropdown -->
-                                    <a-dropdown :trigger="['click']">
-                                        <a-button icon="android" :block="isMobile"
-                                            :style="{ marginTop: isMobile ? '6px' : 0 }" size="large" type="primary">
-                                            Android <a-icon type="down" />
-                                        </a-button>
-                                        <a-menu slot="overlay" :class="themeSwitcher.currentTheme">
-                                            <a-menu-item key="android-v2box"
-                                                @click="open('v2box://install-sub?url=' + encodeURIComponent(app.subUrl) + '&name=' + encodeURIComponent(app.sId))">V2Box</a-menu-item>
-                                            <a-menu-item key="android-v2rayng"
-                                                @click="open('v2rayng://install-config?url=' + encodeURIComponent(app.subUrl))">V2RayNG</a-menu-item>
-                                            <a-menu-item key="android-singbox"
-                                                @click="copy(app.subUrl)">Sing-box</a-menu-item>
-                                            <a-menu-item key="android-v2raytun"
-                                                @click="copy(app.subUrl)">V2RayTun</a-menu-item>
-                                            <a-menu-item key="android-npvtunnel" @click="copy(app.subUrl)">NPV
-                                                Tunnel</a-menu-item>
-                                            <a-menu-item key="android-happ"
-                                                @click="open('happ://add/' + encodeURIComponent(app.subUrl))">Happ</a-menu-item>
-                                        </a-menu>
-                                    </a-dropdown>
-                                </a-col>
-                                <a-col :xs="24" :sm="12" style="text-align:center;">
-                                    <!-- iOS dropdown -->
-                                    <a-dropdown :trigger="['click']">
-                                        <a-button icon="apple" :block="isMobile"
-                                            :style="{ marginTop: isMobile ? '6px' : 0 }" size="large" type="primary">
-                                            iOS <a-icon type="down" />
-                                        </a-button>
-                                        <a-menu slot="overlay" :class="themeSwitcher.currentTheme">
-                                            <a-menu-item key="ios-shadowrocket"
-                                                @click="open(shadowrocketUrl)">Shadowrocket</a-menu-item>
-                                            <a-menu-item key="ios-v2box" @click="open(v2boxUrl)">V2Box</a-menu-item>
-                                            <a-menu-item key="ios-streisand"
-                                                @click="open(streisandUrl)">Streisand</a-menu-item>
-                                            <a-menu-item key="ios-v2raytun"
-                                                @click="copy(v2raytunUrl)">V2RayTun</a-menu-item>
-                                            <a-menu-item key="ios-npvtunnel" @click="copy(npvtunUrl)">NPV
-                                                Tunnel
-                                            </a-menu-item>
-                                            <a-menu-item key="ios-happ" @click="open(happUrl)">Happ</a-menu-item>
-                                        </a-menu>
-                                    </a-dropdown>
-                                </a-col>
-                            </a-row>
-                        </a-form-item>
-                    </a-form>
-                </a-card>
-            </a-col>
-        </a-row>
+                <div v-for="(link, idx) in links" :key="link" class="sub-link-row" @click="copy(link)">
+                    <div class="sub-link-name">[[ linkName(link, idx) ]]</div>
+                    <div class="sub-link-val">[[ link ]]</div>
+                </div>
+            </div>
+
+            <div class="sub-card">
+                <div class="sub-app-title">برنامه‌ها</div>
+                <div class="sub-app-row">
+                    <a-dropdown :trigger="['click']" class="sub-app-ios">
+                        <a-button class="sub-app-btn" icon="apple">
+                            iOS <a-icon type="down" />
+                        </a-button>
+                        <a-menu slot="overlay" :class="themeSwitcher.currentTheme">
+                            <a-menu-item key="ios-shadowrocket" @click="open(shadowrocketUrl)">Shadowrocket</a-menu-item>
+                            <a-menu-item key="ios-v2box" @click="open(v2boxUrl)">V2Box</a-menu-item>
+                            <a-menu-item key="ios-streisand" @click="open(streisandUrl)">Streisand</a-menu-item>
+                            <a-menu-item key="ios-v2raytun" @click="copy(v2raytunUrl)">V2RayTun</a-menu-item>
+                            <a-menu-item key="ios-npvtunnel" @click="copy(npvtunUrl)">NPV Tunnel</a-menu-item>
+                            <a-menu-item key="ios-happ" @click="open(happUrl)">Happ</a-menu-item>
+                        </a-menu>
+                    </a-dropdown>
+
+                    <a-dropdown :trigger="['click']" class="sub-app-android">
+                        <a-button class="sub-app-btn" icon="android">
+                            Android <a-icon type="down" />
+                        </a-button>
+                        <a-menu slot="overlay" :class="themeSwitcher.currentTheme">
+                            <a-menu-item key="android-v2box" @click="open('v2box://install-sub?url=' + encodeURIComponent(app.subUrl) + '&name=' + encodeURIComponent(app.sId))">V2Box</a-menu-item>
+                            <a-menu-item key="android-v2rayng" @click="open('v2rayng://install-config?url=' + encodeURIComponent(app.subUrl))">V2RayNG</a-menu-item>
+                            <a-menu-item key="android-singbox" @click="copy(app.subUrl)">Sing-box</a-menu-item>
+                            <a-menu-item key="android-v2raytun" @click="copy(app.subUrl)">V2RayTun</a-menu-item>
+                            <a-menu-item key="android-npvtunnel" @click="copy(app.subUrl)">NPV Tunnel</a-menu-item>
+                            <a-menu-item key="android-happ" @click="open('happ://add/' + encodeURIComponent(app.subUrl))">Happ</a-menu-item>
+                        </a-menu>
+                    </a-dropdown>
+                </div>
+            </div>
+
+            <div class="sub-card sub-foot">
+                <div><strong>پشتیبانی تلگرام</strong></div>
+                <div>در صورت بروز مشکل در اتصال، از پشتیبان راهنمایی بگیرید.</div>
+            </div>
+        </div>
     </a-layout-content>
 </a-layout>
 
-<!-- Bootstrap data for external JS -->
 <template id="subscription-data" data-sid="{{ .sId }}" data-sub-url="{{ .subUrl }}" data-subjson-url="{{ .subJsonUrl }}"
     data-download="{{ .download }}" data-upload="{{ .upload }}" data-used="{{ .used }}" data-total="{{ .total }}"
     data-remained="{{ .remained }}" data-expire="{{ .expire }}" data-lastonline="{{ .lastOnline }}"
